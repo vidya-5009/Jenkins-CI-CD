@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django_prometheus import exports
 from . import settings, views
 
 urlpatterns = [
     path('todos/', include('todos.urls')),
-    path('metrics/', include('django_prometheus.urls')),
+    path('metrics/', exports.Metrics.as_view(), name='prometheus-metrics'),
     path('admin/', admin.site.urls),
     path('', views.index)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
