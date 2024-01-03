@@ -22,7 +22,7 @@ from . import settings, views
 
 urlpatterns = [
     path('todos/', include('todos.urls')),
-    path('metrics/', exports.Metrics.as_view(), name='prometheus-metrics'),
+    path('', include('django_prometheus.urls')),
     path('admin/', admin.site.urls),
     path('', views.index)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
