@@ -1,8 +1,9 @@
 FROM python:3
 
 WORKDIR /data
-
-RUN pip install django==3.2
+RUN  pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
 COPY . .
 
